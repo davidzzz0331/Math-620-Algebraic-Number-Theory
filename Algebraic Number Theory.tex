@@ -1,0 +1,221 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{fullpage}
+\usepackage{tikz-cd}
+\usepackage{spectralsequences}
+\usepackage{adjustbox}
+\usepackage{xfrac}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\graphicspath{ {D:/Chrome Downloads./} }
+\usepackage[parfill]{parskip}
+\usepackage{amsthm}
+\usetikzlibrary{calc}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[theorem]
+\theoremstyle{definition}
+\newtheorem{remark}{Remark}[theorem]
+\theoremstyle{definition}
+\newtheorem{proposition}{Proposition}[theorem]
+\theoremstyle{definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{corollary}{Corollary}[theorem]
+\theoremstyle{definition}
+\newtheorem{example}{Example}[theorem]
+\tikzset{curve/.style={settings={#1},to path={(\tikztostart)
+    .. controls ($(\tikztostart)!\pv{pos}!(\tikztotarget)!\pv{height}!270:(\tikztotarget)$)
+    and ($(\tikztostart)!1-\pv{pos}!(\tikztotarget)!\pv{height}!270:(\tikztotarget)$)
+    .. (\tikztotarget)\tikztonodes}},
+    settings/.code={\tikzset{quiver/.cd,#1}
+        \def\pv##1{\pgfkeysvalueof{/tikz/quiver/##1}}},
+    quiver/.cd,pos/.initial=0.35,height/.initial=0}
+\title{Math 620: Algebraic Number Theory}
+\author{David Zhu}
+
+\begin{document}
+\maketitle
+
+Started with Calabi's computation of $\zeta(1)$ and $\zeta(2)$ with an ingenious integral and change of variables. 
+
+
+
+\section{Algebraic Numbers, Algebraic Integers}
+
+
+
+\begin{tcolorbox}[colback=red!5!white,colframe=red!30!white]
+\begin{theorem}[Liouville Theorem]
+\label{Liouville}
+If $x$ is a irrational number of degree $n$ over the rationals, then there exists a constant $c$ such that 
+\[|x-\frac{p}{q}|>\frac{c}{q^n}\]
+for all $p,q>0$.
+\end{theorem}
+\end{tcolorbox}
+
+
+The remark is algebraic numbers are harder to estimate with rationals with small denominators. 
+
+
+\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!30!white]
+\begin{example}
+The real number 
+\[\alpha= \sum_{n=0}^{\infty}10^{-n!}\]
+is transcendental.
+\end{example}
+\end{tcolorbox}
+One can show the example is indeed transcendental because it violates the bound of Theorem \ref{Liouville}. 
+
+
+\begin{tcolorbox}[colback=red!5!white,colframe=red!30!white]
+\begin{theorem}[Apery, $\sim$ 1980 ]
+The real number 
+\[\zeta(3)=\sum_{n=1}^{\infty}n^{-3}\] is irrational. 
+\end{theorem}
+\end{tcolorbox}
+
+
+\begin{tcolorbox}[colback=red!5!white,colframe=red!30!white]
+\begin{theorem}[Thue-Siegel-Roth]
+    Suppose $\alpha$ is algebraic and irrational, $\epsilon>0$. Then, there is $c(x,\alpha)$ such that 
+    \[|\alpha-\frac{p}{q}|> \frac{c(x,\alpha)}{q^{2+\epsilon}}\]
+with $q>0$. 
+\end{theorem}
+\end{tcolorbox}
+Note that the proof is not effective. 
+
+\subsection{Continued Fractions}
+
+
+\begin{tcolorbox}[colback=red!5!white,colframe=red!30!white]
+\begin{theorem}
+    Quadratic irrationals are characterized by having infinite conitnued fractions that are evetually periodic. 
+\end{theorem}
+\end{tcolorbox}
+
+
+
+\begin{tcolorbox}[colback=red!5!white,colframe=red!30!white]
+\begin{theorem}[Hurwitz]
+    \label{Hurwitz}
+    If $\alpha $ is irrational, then there are infinitely many $\frac{p}{q}$
+    \[|\alpha-\frac{p}{q}|<\frac{p}{\sqrt{5}q^2}\]
+    Moreover, $\sqrt{5}$ is the best bound. 
+\end{theorem}
+\end{tcolorbox}
+
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!30!white]
+\begin{remark}
+The `Lagrange Spectrum' says something about how difficult to approximate an irrational by rationals. The are related to the constant $\sqrt{5}$ appearing in Theorem \ref{Hurwitz}.
+\end{remark}
+\end{tcolorbox}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{tcolorbox}[colback=purple!5!white,colframe=purple!75!black]
+\begin{definition}
+The \textbf{Markov triple} is a triple $(m,n,p)$
+such that 
+\[m^2+n^2+p^2=3mnp\]
+A \textbf{Markov number} is any number appearing in a Markov triple. 
+\end{definition}
+\end{tcolorbox}
+These Markov triples are related to algebraic geometry of $K3$ surfaces.  
+
+
+\section{Integrality}
+
+
+\begin{tcolorbox}[colback=purple!5!white,colframe=purple!75!black]
+\begin{definition}
+Suppose $A\leq R$ are commutative rings. An $x\in R$ is \textbf{integral} over $A$ if satisfies a monic polynomial with coefficients in $A$. 
+\end{definition}
+\end{tcolorbox}
+
+
+
+\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!30!white]
+\begin{example}
+$R:=F[u,v]/(v^2-(u^2+au+b))$ defines an elliptic curve, and $R$ is integral over $F[u]$. 
+\end{example}
+\end{tcolorbox}
+
+Note that given a ring extension $A\to B$, elements in $B$ integral over $A$ forma  subring of $B$. 
+
+
+\begin{tcolorbox}[colback=purple!5!white,colframe=purple!75!black]
+\begin{definition}
+Given a ring extension $A\to B$, the integral closure of $A$ with respect to the extension is the subring of $B$ that contains the integral elements over $A$. 
+\end{definition}
+\end{tcolorbox}
+
+
+
+\begin{tcolorbox}[colback=purple!5!white,colframe=purple!75!black]
+\begin{definition}
+A \textbf{number field } is a finite extension of $\mathbb{Q}$. 
+\end{definition}
+\end{tcolorbox}
+By the primitive element theorem, we know every nymber field is of the form $\mathbb{Q}[u]$ for some primitive $u$. 
+
+
+\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!30!white]
+\begin{example}
+A \textbf{Kummer extension} is a number field of the form 
+\[\mathbb{Q}[x]\]
+where $x^n-a=0$ for some $a\in \mathbb{Q}$. 
+
+\end{example}
+\end{tcolorbox}
+
+
+\begin{tcolorbox}[colback=red!5!white,colframe=red!30!white]
+\begin{theorem}[Kronecker-Weber]
+    The abelian number fields over the rationals are subfields of the cyclotomic number fields $\mathbb{Q}(\zeta_n)$. 
+
+\end{theorem}
+\end{tcolorbox}
+
+
+\begin{tcolorbox}[colback=purple!5!white,colframe=purple!75!black]
+\begin{definition}
+The \textbf{ring of integers} $\mathcal{O}_K$ associated to a number field $K$ is the integral closure of $\mathbb{Z}$ in $K$. Alternatively, it is the subring of all algebraic integers in $K$. 
+\end{definition}
+\end{tcolorbox}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
