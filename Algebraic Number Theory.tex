@@ -108,7 +108,7 @@ Note that the proof is not effective.
     \label{Hurwitz}
     If $\alpha $ is irrational, then there are infinitely many $\frac{p}{q}$
     \[|\alpha-\frac{p}{q}|<\frac{p}{\sqrt{5}q^2}\]
-    Moreover, $\sqrt{5}$ is the best bound. 
+    Moreover, $\sqrt{5}$ is the best bound, for $\frac{1+\sqrt{5}}{2}$ would be a counter example to any constant greater than $\sqrt{5}$.
 \end{theorem}
 \end{tcolorbox}
 
@@ -203,8 +203,99 @@ The \textbf{ring of integers} $\mathcal{O}_K$ associated to a number field $K$ i
 \end{tcolorbox}
 
 
+\section{Aug 28}
+
+Preview of Class field Theory
+
+\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!30!white]
+\begin{example}
+Let $L=\mathbb{Q}(\sqrt{d})$, where $d$ is square free. Then, 
+\[\mathcal{O}_L=\begin{cases}
+    \mathbb{Z}[\sqrt{d}] & d\neq 1 \textrm{ mod } 4\\
+    \mathbb{Z}{\frac{1+\sqrt{d}}{2}} & \textrm{otherwise}
+\end{cases}\]
+
+We want to know how many homomorphisms 
+\[\mathcal{O}_L\otimes_{\mathbb{Z}} (\mathbb{Z}/p)\to \mathbb{Z}/p\]
+exists. This is in bijection with square root of $d$ in $\mathbb{Z}/p$. The exercise is that such homomorphisms exists when $p$ does not divide $d$. \\
+
+For an explicit example, take $L=\mathbb{Q}(\sqrt{2})$, so $\mathcal{O}_L= \mathbb{Z}[\sqrt{2}]$. Then, there is only one homomorphism 
+\[\mathcal{O}_L\otimes_{\mathbb{Z}} (\mathbb{Z}/2)\to \mathbb{Z}/2\]
+by sending $\sqrt{2}\otimes 1$ to $0$. 
+
+\end{example}
+\end{tcolorbox}
 
 
+\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!30!white]
+\begin{example}
+Explicit example of Kronecker-Weber: $\mathbb{Q}(\sqrt{d})$ when $d=1 mod 4$  is contained in $\mathbb{Q}(\zeta_d)$. 
+\end{example}
+\end{tcolorbox}
+
+\section{Sep 2}
+
+\begin{tcolorbox}
+\begin{lemma}
+The following are true:
+\begin{enumerate}
+    \item If $B$ is finitely generated over $A$, then $B$ is integral over $A$.
+    \item If $A\leq B\leq C$, and $B/A$ and $C/B$ are integral, then $C/A$ is integral. 
+\end{enumerate}
+\end{lemma}
+\end{tcolorbox}
+
+\subsection{Trace and Norm}
+
+Let $L/F$ be an finite algebraic field extension. Let $B$ be a basis of $L$ over $F$. Left multiplication by an element $\alpha\in L$ induces a map 
+\[L\to \textrm{Mat}(F)\]
+and the trace and norm of the matrix does not depend on the basis chosen. 
+
+
+\begin{tcolorbox}[colback=purple!5!white,colframe=purple!75!black]
+\begin{definition}
+The \textbf{trace} of $\alpha\in L$ is defined to be the trace of the matrix represented by $\alpha$; the \textbf{norm} is the determinant. 
+\end{definition}
+\end{tcolorbox}
+
+Let $L/F$ be of characteristic $p$. Then, the formulas for the trace and norm are given by 
+\[\textrm{Norm}_{L/F}(\alpha)=[L: F(\alpha)](\prod^d_{i=1}\sigma_i(\alpha)^{p^r})\]
+\[\textrm{Tr}_{L/F}(\alpha)=[L: F(\alpha)](\sum^d_{i=1}\sigma_i(\alpha)^{p^r})\]
+\[\textrm{char}_{L/F}=(x^{p^r}-\sigma_i(\alpha)^{[L:F(\alpha)]})\]
+
+
+\begin{tcolorbox}[colback=red!5!white,colframe=red!30!white]
+\begin{theorem}[Dedekind]
+Suppose $L/F$ is a finite extension of fields, and $\overline{L}$ is the closure of $K$. The set of embeddding of $L$ to $\overline{L}$ over $F$ is linearly independent over $\overline{L}$. 
+\end{theorem}
+\end{tcolorbox}
+
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!30!white]
+\begin{corollary}
+If $L/F$ is separable, then the trace function is not the zero function.
+\end{corollary}
+\end{tcolorbox}
+This is easy for we can take the trace of any element separable over $F$. 
+
+
+\begin{tcolorbox}[colback=green!5!white,colframe=green!30!white]
+\begin{corollary}
+If $L/F$ is finite separable, then there is a non-degenerate symmetric $F$-bilinear trace pairing
+\[\textrm{Tr}: L\times L\to F\]
+given by $\langle x,y \rangle \mapsto \textrm{Tr}(xy)$. 
+\end{corollary}
+\end{tcolorbox}
+
+Any non-degenerate symmetric bilinear form gives rise a quadratic form. Moreover, the quadratic form can be diagonalized if the characteristic is not $2$. 
+
+
+\begin{tcolorbox}[colback=purple!5!white,colframe=purple!75!black]
+\begin{definition}
+The \textbf{discriminant} of a diagonal quadratic form is the product of the coefficients. 
+\end{definition}
+\end{tcolorbox}
+The discriminant lives in $F^*/(F^*)^2$. 
 
 
 
