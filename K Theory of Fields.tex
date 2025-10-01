@@ -1,0 +1,701 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz-cd}
+\usetheme{Madrid}
+\usecolortheme{default}
+\usepackage{tikz, tikz-cd}
+\usetikzlibrary{calc}
+\usepackage[export]{adjustbox}
+\tikzset{curve/.style={settings={#1},to path={(\tikztostart)
+    .. controls ($(\tikztostart)!\pv{pos}!(\tikztotarget)!\pv{height}!270:(\tikztotarget)$)
+    and ($(\tikztostart)!1-\pv{pos}!(\tikztotarget)!\pv{height}!270:(\tikztotarget)$)
+    .. (\tikztotarget)\tikztonodes}},
+    settings/.code={\tikzset{quiver/.cd,#1}
+        \def\pv##1{\pgfkeysvalueof{/tikz/quiver/##1}}},
+    quiver/.cd,pos/.initial=0.35,height/.initial=0}
+%------------------------------------------------------------
+%This block of code defines the information to appear in the
+%Title page
+\title[K Theory of Fields]{K Theory of Fields}
+\author[David Zhu]{David Zhu}
+
+
+%End of title page configuration block
+%------------------------------------------------------------
+
+
+
+%------------------------------------------------------------
+%The next block of commands puts the table of contents at the 
+%beginning of each section and highlights the current section:
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+%------------------------------------------------------------
+
+
+\begin{document}
+
+\frame{\titlepage}
+
+
+%---------------------------------------------------------
+%This block of code is for the table of contents after
+%the title page
+\begin{frame}
+\frametitle{Table of Contents}
+\tableofcontents
+\end{frame}
+%---------------------------------------------------------
+
+
+
+\section{Ridigity}
+\begin{frame}{Background}
+  \begin{block}{Conjecture (Quillen-Lichtenbaum, circa 1972)}
+   Let $F$ be an algebraically closed field of characteristic exponent $p$. Then for $i\geq 1$, $K_{2i}(F)$ is a divisible torsion-free abelian group, and  $K_{2i-1}(F)$ is a divisible group whose torsion subgroup is isomorphic to $\mathbb{Q}/\mathbb{Z}[\frac{1}{p}]$
+  \end{block}
+\begin{itemize}
+  \item For $F=\overline{\mathbb{F}}_p$ computation of $K_*(\mathbb{F}_{p})$, and the a colimit argument \pause
+  \item For $K_1$, $K_1(F)\cong F^{\times}$
+  \item For $K_2$,  a theorem by Tate.
+  \item Then conjectured relationship between $K$-theory and special values of zeta functions.
+
+\end{itemize}
+
+
+
+
+
+
+
+\end{frame}
+
+
+\begin{frame}{Some Progress}
+\begin{theorem}[Harris-Segal, 1975]
+Let $R$ be the ring of integers of some number field $F$. Then, $K_{2i-1}(R)$ contains an explicit cyclic summand that maps isomorphically to $K_{2i-1}(F)$. 
+\end{theorem}
+The explicit cyclic summand is determined as follows: Harris-Segal showed that for $R=\mathcal{O}_F$, one may construct homomorphism
+\[\phi: R\to \mathbb{F}_q\]
+such that the induced homomorphism
+\[\phi_*: K_{2i-1}(R)\to K_{2i-1}(\mathbb{F}_q)\]
+becomes a split surjection on $l$ primary parts. The splitting arises from choosing a subgroup in $GL_i(\mathbb{F}_q)$ and some representation theoretical tools.
+
+\end{frame}
+\begin{frame}{e-invariant}
+
+
+For a field $F$, let $\mu=\mu(F)$ be the group of all roots of unity in its closure.
+
+\begin{definition}
+ For each $i$, we define the $i$th \textbf{Tate twist} of $\mu$ as the $G:=\textrm{Gal}(\overline{F}/F)$-module structure on $\mu$ by 
+  \[g\cdot \zeta=g^i(\zeta)\]
+denoted by $\mu(i)$. We let $w_i:= |\mu(i)^G|$ and $w_i^{(l)^G}=|\mu(i)_{(l)}|$
+\end{definition}
+\end{frame}
+
+
+\begin{frame}{e-invariant}
+From the known $K_{2i-1}(\mathbb{F}_q)$, one determines the explicit cyclic summand to be $\mathbb{Z}/w_i$. Such summand is detected by the natural map 
+\[e: K_{2i-1}(F)_{\textrm{tor}}\to K_{2i-1}(\overline{F})_{\textrm{tor}}^G\cong \mu(i)^G \]
+which is called the \textbf{e-invariant}.
+
+\begin{block}{Fact}
+The classical Adams e-invariant detects a summand in the stable homotopy groups of sphere.
+  
+\end{block}
+
+
+
+\end{frame}
+
+
+
+
+
+
+
+\begin{frame}[fragile]{Homotopy Groups with Coefficients}
+  
+Recall the Moore space $M(G,k)$ is characterized by having its reduced homology concentrated in degree $k$ and $\tilde{H}^k(M(G,k), \mathbb{Z})=G$. For $G$ cyclic of order $n$, $M(G,k)$ can be constructed by gluing a $k$-cell to $S^{k-1}$ by a degree $n$ map. \pause
+\begin{definition}
+  Let $M(\mathbb{Z}/n,m)$ be the Moore space of $\mathbb{Z}/n$. The mod n homotopy group of a space $X$ is defined by 
+\[ \pi_m(X; \mathbb{Z}/n):= [M(\mathbb{Z}/n,m), X]\]
+\end{definition}
+
+\end{frame}
+
+
+\begin{frame}{K-theory with finite coefficients}
+  For a general space $X$, $\pi_m(X, \mathbb{Z}/n)$  is only a group when $m\geq 2$. For infinite loop spaces, these homotopy groups with coefficients are all abelian groups. 
+
+  \begin{definition}
+    We define the $K$-theory of a ring $R$ with with $\mathbb{Z}/n$ coefficients as 
+    \[K_m(R; \mathbb{Z}/n):= \pi_m(K(R); \mathbb{Z}/n)\]
+  \end{definition}
+
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{frame}[fragile]{Universal Coefficient Theorem}
+The mod n homotopy groups satisfy the following exact sequence 
+\[\begin{tikzcd}
+	0 & {\pi_n(X)\otimes\mathbb{Z}/p} & {\pi_n(X;\mathbb{Z}/p)} & {\textrm{Tor}_1(\pi_{n-1}X, \mathbb{Z}/p)} & 0
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+\end{tikzcd}\]
+
+\begin{itemize}
+  \item The group $\pi_n(X)\otimes\mathbb{Z}/p$ measures how far $\pi_n(X)$ is from being $p$-divisible.
+  \item The group $\textrm{Tor}_1(\pi_{n-1}X, \mathbb{Z}/p)$ detects $p$-torsion in $\pi_{n-1}X$.
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{frame}
+
+\begin{frame}{Suslin Ridigity}
+  \begin{theorem}[Suslin, 83]
+   Let $i: k\to L$ be an extension of algebraically closed fields and $n$ an integer such that $gcd(n, char(k))=1$. Then,
+   \[i_*: K_*(k, \mathbb{Z}/n)\to K_*(L;\mathbb{Z}/n)\]
+   is an isomorphism.
+  \end{theorem}
+
+  From Quillen's computation of $K_*(\mathbb{F}_p)$, the conjecture of Quillen-Lichtenbaum is solved for positive characteristic. 
+
+
+
+\end{frame}
+
+
+
+\begin{frame}{Proof of Suslin Rigidity}
+
+\begin{block}{Preliminary Reduction}
+A Zorn's lemma argument allows reduction to the case where $\textrm{Trdeg}_k(L)=1$.
+\end{block}
+
+\vfill
+\vfill
+
+\end{frame}
+
+\begin{frame}{Smooth Curves}
+Given such an $L$, we can realize $L$ as a colimit 
+\[L\cong \varinjlim_{A\subset L}A\]
+where $A$ is a finitely generated, integrally closed $k$-subalgebra of $L$. \pause This induces the isomorphism of $K$-groups 
+\[K(L; \mathbb{Z}/n)\cong \varinjlim_{A\subset L}K(A; \mathbb{Z}/n)\]
+  
+\end{frame}
+
+
+
+\begin{frame}{Reductions}
+We may view $A$ as a smooth $k$-curve. A point $x\in Spec(A)$ gives rise to a splitting 
+\[k\xrightarrow{i}A\xrightarrow{/x}k\] \pause
+This induces a splitting of $K$ theory and we get 
+\[K_*(k; \mathbb{Z}/n)\xrightarrow{i_*} K_*(A; \mathbb{Z}/n)\]
+is injective. \pause We may deduce 
+\[K_*(k; \mathbb{Z}/n)\to K_*(L; \mathbb{Z}/n)\] is injective after passage to colimit.
+\end{frame}
+
+\begin{frame}{Further Reduction}
+  Let $\alpha\in K_*(L; \mathbb{Z}/n)$ be an arbitrary element. By the colimit characterization, $\alpha$ is in the image of some 
+  \[K_*(A; \mathbb{Z}/n)\to K_*(L;\mathbb{Z}/n)\]
+  for some subalgebra $A$. The next ``trick'' helps us to reduce the problem to the following proprosition:
+  
+\begin{block}{Proposition}
+  \label{reduction1}
+If $A$ is a finitely generated smooth $k$-algebra (of $\textrm{dim}$ 1), then  two $k$-points $x,y$ of $Spec(A)$ induces the same map 
+\[x_*=y_*: K_*(A; \mathbb{Z}/n)\to K_*(k; \mathbb{Z}/n)\]  
+\end{block}
+
+
+
+
+\end{frame}
+  
+
+
+
+\begin{frame}{The Trick}
+The inclusion $A\xrightarrow{i} L$ factors as 
+\[A\xrightarrow{Id\otimes 1}A\otimes_k L\xrightarrow{i_0} L\]
+where $i_0$ is induced by the inclusion $A\hookrightarrow L$. \pause On the other hand, each choice of a $k$ point $x\in Spec(A)$ gives rise to a composition
+\[A\xrightarrow{/x}k\xrightarrow{i}L\]
+which induces another morphism 
+\[A\otimes_k L\xrightarrow{i_x} L\]
+  
+\end{frame}
+
+\begin{frame}[fragile]{The Trick}
+  Assuming the Proposition, the two maps 
+  \[\begin{tikzcd}
+	{A\otimes_kL} & L
+	\arrow["{i_x}"' , from=1-1, to=1-2]
+	\arrow["{i_0}", shift left=3, from=1-1, to=1-2]
+\end{tikzcd}\]
+induce the same map on $K$-theory, so we have two equivalent compositions.
+\[\begin{tikzcd}
+	{K_*(A; \mathbb{Z}/n)} & {K_*(A\otimes_kL; \mathbb{Z}/n)} & {K(L; \mathbb{Z}/n)}
+	\arrow[from=1-1, to=1-2]
+	\arrow["{(i_x)_*}"', shift right, from=1-2, to=1-3]
+	\arrow["{(i_0)_*}", shift left, from=1-2, to=1-3]
+\end{tikzcd}\]
+The top composition is just the map induced by the inclusion $A\hookrightarrow L$;\pause  the second map also factors as 
+\[\begin{tikzcd}
+	{K(A; \mathbb{Z}/n)} & {K(k; \mathbb{Z}/n)} & {K(L; \mathbb{Z}/n)}
+	\arrow["{(/x)_*}", from=1-1, to=1-2]
+	\arrow["{(i)_*}",from=1-2, to=1-3]
+\end{tikzcd}\]
+therefore $\alpha$ is in the image of $i_*$, and we have surjectivity.
+
+\end{frame}
+
+
+
+\begin{frame}{Transfer}
+  \begin{definition}
+    If $f: R\to S$ is a ring map such that $S$ becomes a finitely generated $R$-module, then the forgetful exact functor
+    \[M(S)\to M(R)\]
+     induce the \textbf{transfer map}
+    \[f^*: G(S)\to G(R)\]
+  \end{definition}
+    Recall for regular Noetherian rings, the $G$-theory and $K$-theory agree, as a consequence of the resolution theorem. Therefore, we have a transfer map between $K$-theory as well. 
+
+\end{frame}
+
+
+\begin{frame}[fragile]{More on Transfer}
+  Now let $R$ be a Dedekind domain (Noetherian, integrally closed, Krull dimension $1$), with $F:=Frac(R)$. Localizing at the non-zero elements gives us the LES 
+\[\begin{tikzcd}
+	{K_{n+1}(F)} & {\oplus_{\mathfrak{p}}K(R/\mathfrak{p})} & {K_n(R)} & {K_n(F)}
+	\arrow["\partial", from=1-1, to=1-2]
+	\arrow["{\oplus\mathfrak{p^*}}", from=1-2, to=1-3]
+	\arrow[from=1-3, to=1-4]
+\end{tikzcd}\]
+and the middle map is the sum of the individual transfer maps from the projection $R\to R/\mathfrak{p}$.
+
+\end{frame}
+
+\begin{frame}[fragile]{Specialization}
+Now let $C=Spec(A)$ be a smooth $k$-curve, and $x$ a closed point on $C$. Each stalk $\mathcal{O}_x$ is a then a DVR. Let $\pi_x$ be a choice of uniformizing parameter, which induces a residue map $\pi_s: \mathcal{O}_x\to k $. The localization sequence for $\mathcal{O}_x$ looks like 
+\[\begin{tikzcd}
+	{G(k)/n} & {G(\mathcal{O}_x)/n} & {G(F)/n}
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+\end{tikzcd}\]
+\pause
+This is a sequence of $K(\mathcal{O}_x)$-modules. We will investigate how the module structure interact with the product structure. 
+
+\end{frame}
+
+\begin{frame}[fragile]{Specialization}
+The module structure gives us pairings
+\[K_p(\mathcal{O}_x)\otimes K_q(-; \mathbb{Z}/n)\to K_{p+q}(-; \mathbb{Z}/n)\]
+
+\pause
+We are interested in the following composition 
+\[\begin{tikzcd}
+	{K_1(\mathcal{O}_x)\otimes K_q(F;\mathbb{Z}/n)} & {K_1(F)\otimes K_q(F;\mathbb{Z}/n)} & { K_{1+q}(F;\mathbb{Z}/n)} & {} \\
+	&& {K_q(k; \mathbb{Z}/n)}
+	\arrow["{i_*\otimes 1}", from=1-1, to=1-2]
+	\arrow["\smile", from=1-2, to=1-3]
+	\arrow["\partial", from=1-3, to=2-3]
+\end{tikzcd}\]
+where $\partial$ comes from the localization.
+\end{frame}
+
+
+
+\begin{frame}{Product Formula}
+  Let $a\in K_1(\mathcal{O}_x)$ and $b\in K_q(F; \mathbb{Z}/n)$. We have the product formula 
+  \[\partial(i_*(a)\smile b)=(\pi_s)_*(a)\smile \partial b\]
+  This follows from everything being a $K(\mathcal{O}_x)$ module homomorphism, and the Leibniz rule. \vfill
+
+\textbf{Critial Observation}: $(\pi_s)_*(a)$ lives in $K_1(k)\cong k^*$, which is $n$-divisible by assumption on characteristic. Thus, the composition must be $0$!
+
+
+
+
+
+
+\end{frame}
+
+\begin{frame}[fragile]{Specialization}
+Now a choice of uniformizing parameter gives us a splitting of
+\[\begin{tikzcd}
+0\arrow[r]&\mathcal{O}_x^*\arrow[r]& F^*\arrow[r]&\mathbb{Z}\arrow[r]&0
+\end{tikzcd}\]
+which is an isomorphism $K_1(F)\cong \mathbb{Z}\oplus K_1(\mathcal{O}_x)$. \pause \vfill
+
+Thus, there is a \textbf{specialization map}
+\[s_x: K_*(F; \mathbb{Z}/n)\to K_*(k; \mathbb{Z}/n)\]  
+that makes 
+\[\begin{tikzcd}
+	{K_1(F)\otimes K_q(F; \mathbb{Z}/n)} & {\mathbb{Z}\otimes K_q(F; \mathbb{Z}/n)} \\
+	{K_{1+q}(F; \mathbb{Z}/n)} & {K_q(k;\mathbb{Z}/n)}
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow["{{s_x}}", dashed, from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+\end{tikzcd}\]
+commute.
+
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Properties of Specialization}
+  The diagram 
+  \[\begin{tikzcd}
+	{K_1(F)\otimes K_q(F; \mathbb{Z}/n)} & {\mathbb{Z}\otimes K_q(F; \mathbb{Z}/n)} \\
+	{K_{1+q}(F; \mathbb{Z}/n)} & {K_q(k;\mathbb{Z}/n)}
+	\arrow[from=1-1, to=1-2]
+	\arrow["{\smile}",from=1-1, to=2-1]
+	\arrow["{{s_x}}", dashed, from=1-2, to=2-2]
+	\arrow["{\partial}",from=2-1, to=2-2]
+\end{tikzcd}\]
+gives us the formula for specialization 
+\[s_x(a)=\partial(\pi_x\smile a)\]
+\end{frame}
+
+
+
+
+\begin{frame}[fragile]{Properties of Specialization}
+\begin{block}{Lemma}
+  The diagram
+\[\begin{tikzcd}
+	{K_q(A; \mathbb{Z}/n)} \\
+	{K_q(F; \mathbb{Z}/n)} & {K_q(k; \mathbb{Z}/n)}
+	\arrow[from=1-1, to=2-1]
+	\arrow["{(-1)^qx_*}", from=1-1, to=2-2]
+	\arrow["{s_x}"', from=2-1, to=2-2]
+\end{tikzcd}\]
+  commutes.
+\end{block}
+\begin{enumerate}
+  \item We know $x_*$ is a split surjection, so each specialization map $s_x$ is a surjection as well. \pause
+  \item The boundary differential is also a surjection by the formula for specialization; \pause
+\end{enumerate}
+
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Final Reduction}
+
+We look at the localization sequence again:
+\[\begin{tikzcd}
+	{K_{q+1}(F; \mathbb{Z}/n)} & {K_{q}(k; \mathbb{Z}/n)} & {K_{q}(\mathcal{O}_x; \mathbb{Z}/n)} & {K_{q}(F; \mathbb{Z}/n)}
+	\arrow["\partial", from=1-1, to=1-2]
+	\arrow["{(\pi_x)^*}", from=1-2, to=1-3]
+	\arrow[from=1-3, to=1-4]
+\end{tikzcd}\]
+The boundary differential being a surjection implies the transfer $(\pi_x)^*$ is the zero map; we may further deduce the inclusion homomorphism 
+\[K_{q}(\mathcal{O}_x; \mathbb{Z}/n)\to K_{q}(F; \mathbb{Z}/n)\]
+is an injection for all $x\in A$. It is clear then the inclusion homomorphism 
+\[K_*(A; \mathbb{Z}/n)\to K_*(F; \mathbb{Z}/n)\]
+is an injection as well.
+
+
+
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+\begin{frame}[fragile]{Reduction to Birational}
+
+\[\begin{tikzcd}
+	{K_q(A; \mathbb{Z}/n)} \\
+	{K_q(F; \mathbb{Z}/n)} & {K_q(k; \mathbb{Z}/n)}
+	\arrow["inject", from=1-1, to=2-1]
+	\arrow["{(-1)^qx_*}", from=1-1, to=2-2]
+	\arrow["{s_x}"', from=2-1, to=2-2]
+\end{tikzcd}\]
+
+We may further reduce Proposition to the following 
+\begin{block}{Main Theorem}
+  Let $C$ be a smooth curve over $k$, and let $F:= k(C)$ be its function field. If $x,y$ are two closed $k$-points on the curve, then the \textbf{specialization maps}
+  \[s_x,x_y: K_*(F; \mathbb{Z}/n)\to K_*(k; \mathbb{Z}/n)\]
+  are equal.
+\end{block}
+\end{frame}
+
+
+\begin{frame}{Proving the Main Theorem}
+  First, we may complete the smooth curve $C$ to a smooth projective curve, which does not alter the function field. And here some algebraic geometry comes in.\vfill 
+
+
+Recall the set of cartier divisors $\textrm{Cart}(C)$ is the free abelian group of closed points on $C$. Consider the homomorphism 
+\[\lambda: \textrm{Cart}(C)\to \textrm{Hom}(K_*(F; \mathbb{Z}/n), K_*(k; \mathbb{Z}/n))\]
+by sending $[c]$ to the specialization map $s_c$.
+
+\end{frame}
+
+
+\begin{frame}{Proving the Main Theorem}
+We have the exact sequence 
+\[0\xrightarrow{}F^*\xrightarrow{\textrm{div}}\textrm{Cart}(C)\xrightarrow{} \textrm{Pic}(C)\xrightarrow{}0\]
+where $\textrm{div}(f)= \sum_{f(p)=0}e_c[p]-\sum_{f(p)=\infty}e_c[p]$.
+
+\begin{block}{Proposition}
+The composition $\lambda\circ \textrm{div}$ is $0$ on $F^*$.  
+\end{block}
+\vfill
+\vfill
+
+
+
+
+\end{frame}
+
+\begin{frame}{Deducing Ridigity}
+Since the composition $\lambda\circ \textrm{div}=0$, we know $\lambda$ factors through the cokernel of $\textrm{div}$, which is $\textrm{Pic}(C)$. Moreover, classes of the form $[c_0]-[c_1]$ all live in the Jacobian $J(C)$, which is the kernel the degree map 
+\[J(C)\xrightarrow{} \textrm{Pic}(C)\xrightarrow{\textrm{deg}} \mathbb{Z}\]
+
+\pause
+
+\begin{block}{Fact  (Abelian Varieties)}
+The group $J(C)$ is the $k$-point of the \textbf{Jacobian variety}, which is an abelian variety. All abelian varieties are divisible.
+\end{block}
+However, we see the target group $\textrm{Hom}(K_*(F; \mathbb{Z}/n), K_*(k; \mathbb{Z}/n))$ is of exponent $n$, so $\lambda$ is $0$ on $J(C)$, which implies $s_{c_0}=s_{c_1}$ for all $c_0,c_1$.
+
+\end{frame}
+
+\begin{frame}{Overview and Preview}
+ The main ingredients of Suslin's ridigity is: 
+ \begin{enumerate}
+  \item  Analyze transfers/specialization maps in $K$-theory \pause
+  \item A certain action of finite correspondences on $K(-; \mathbb{Z}/n)$ factors through the Jacobian of a smooth projective curve \pause
+  \item This action is trivial as the Jacobian is divisible. \pause
+ \end{enumerate}
+ \vfill
+The same ingredients also appeared in many subsequent rigidity-type results in $K$-theory. Later on, motivic homotopy theorists generalized these results to sheaves with transfers.
+
+\end{frame}
+
+\begin{frame}{More Ridigity}
+\begin{theorem}[Gillet-Thomason, 84]
+Let $k$ be a separably closed field, $R$ a strictly Henselian regular k-algebra of geometrical type, and $n$ be an integer invertible in k. Then,
+\[K(k; \mathbb{Z}/n)\to K(R; \mathbb{Z}/n)\]
+is an isomorphism.
+
+\end{theorem}
+
+
+
+\begin{theorem}[Gabber, 92]
+  Let $R$ be a Henselian local ring with residue field $k$ and assume $n$ is an integer invertible in $R$. Then
+\[K(R; \mathbb{Z}/n)\to K(k; \mathbb{Z}/n)\]
+is an isomorphism.
+\end{theorem}
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Corollaries of Ridigity}
+
+\begin{frame}[fragile]{Bott Element}
+Suppose $R$ contans a primitive $p$th root of unity $\zeta$.
+
+\[\begin{tikzcd}
+	0 & {K_2(R)\otimes\mathbb{Z}/p} & {K_2(R;\mathbb{Z}/p)} & {\textrm{Tor}_1(K_1(R), \mathbb{Z}/p)} & 0
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+\end{tikzcd}\]
+
+\begin{definition}
+  An element in $K_2(R; \mathbb{Z}/p)$ that maps to $\zeta\in \textrm{Tor}_1(K_1(R), \mathbb{Z}/p)$ is called a \textbf{Bott element}.
+\end{definition}
+
+
+\end{frame}
+
+
+
+\begin{frame}{Finite Field}
+ Note the mod $2$ Moore spectrum is not a ring spectrum, but Browder still proves a product structure on K theory with coefficients. 
+\begin{theorem}[Browder, 78]
+The $K$-theory with coefficients $K_*(\mathbb{F}_p; \mathbb{Z}/n)$ admits a graded ring structure for all $n$.
+\end{theorem}\pause
+So from the ring structure, we have a canonical homomorphism 
+\[\mathbb{Z}/n[\beta,\zeta]\to K_*(\mathbb{F}_p; \mathbb{Z}/n)\]
+
+
+\end{frame}
+
+
+
+\begin{frame}{Example}
+
+
+\begin{theorem}[Browder, 78]
+For $l\neq p$, we have 
+\[K_*(\mathbb{F}_p; \mathbb{Z}/l)\cong \mathbb{Z}/l[\beta,\zeta]/\zeta^2\]
+as a graded ring. Passing to the colimit gives
+\[K_*(\overline{\mathbb{F}}_p; \mathbb{Z}/l)\cong \mathbb{Z}/l[\beta]\]
+\end{theorem}
+\end{frame}
+
+
+
+
+
+\begin{frame}{Field of positive characteristic}
+ \begin{block}{Corollary}
+Let $F$ be an algebraically closed field of positive characteristic $p$. Then,
+\begin{enumerate}
+  \item If $n$ is even and $n>0$, $K_n(F)$ is uniquely divisible.
+  \item If $n=2i-1$ is odd, $K_{2i-1}(F)$ is the direct sum of a uniquely divisible group and the torsion group $\mathbb{Q}/\mathbb{Z}[\frac{1}{p}]$
+  \item If $gcd(n,p)=1$, a choice of a Bott element $\beta\in K_2(F; \mathbb{Z}/n)$ determines a graded ring isomorphism 
+  \[K_*(F; \mathbb{Z}/n)\cong \mathbb{Z}/n[\beta] \]
+\end{enumerate}
+
+
+
+
+  
+ \end{block}
+\end{frame}
+
+
+\begin{frame}{Characteristic 0}
+\begin{block}{Proposition}
+  If $F$ is an algebraically closed field of characteristic $0$ then for every $N>0$ the choice of a Bott element $\beta \in K_2(F;\mathbb{Z}/n)$ determines a graded ring isomorphism 
+  \[K_*(F; \mathbb{Z}/n)\cong \mathbb{Z}/n[\beta] \]
+\end{block}
+By Suslin Ridigity, it suffices to demonstrate one such example. The idea is to consider $F=\overline{\mathbb{Q}}_p$. One may write $F\cong \varinjlim E_{p^r}$, where $E_{p^r}$ is the maximal algebraic extension of $\mathbb{Q}_p$
+in $F$ with residue field $\mathbb{F}_{p^r}$. One then applies Gabber Ridigity to show that 
+
+\[K_*(E_{p^r}; \mathbb{Z}/n)\cong \mathbb{Z}/n[\beta]\]
+and take the colimit.
+
+\end{frame}
+
+
+
+
+\begin{frame}{Final Thoughts}
+
+\begin{itemize}
+  \item $K$-theory of $\mathbb{R}$()
+  \item $K$-theory of local/global fields.
+  \item Relation with \'etale/motivic cohomology.
+\end{itemize}
+
+
+  
+
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
